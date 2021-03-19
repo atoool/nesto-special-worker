@@ -1,12 +1,5 @@
 import React, {useContext, useState} from 'react';
-import {
-  SafeAreaView,
-  Text,
-  View,
-  StyleSheet,
-  ScrollView,
-  ToastAndroid,
-} from 'react-native';
+import {SafeAreaView, Text, View, StyleSheet, ScrollView} from 'react-native';
 import {Typography, Colors} from '../styles';
 import Button from '../components/Button';
 import {AppContext} from '../context/AppContext';
@@ -120,29 +113,23 @@ const VerifyItemSection = ({
           <Divider />
         </>
 
-        <View style={{marginHorizontal: 32}}>
+        <View style={{marginHorizontal: 32, marginTop: 20}}>
           <Button
             scanButton
             iconType={'tick'}
             title={locale?.IS_ready}
             titleStyle={[Typography.bold17White]}
-            style={{
-              padding: 30,
-              paddingVertical: 10,
-              marginTop: 20,
-            }}
-            onPress={() => {}}
+            style={styles.button}
+            onPress={onManualEntry}
           />
           <Button
             scanButton
             title={locale?.IS_notAvail}
             titleStyle={Typography.bold17White}
-            style={{
-              padding: 30,
-              paddingVertical: 10,
-              marginVertical: 20,
+            style={styles.button}
+            onPress={() => {
+              navigation.pop();
             }}
-            onPress={() => {}}
           />
         </View>
       </View>
@@ -190,6 +177,11 @@ const styles = StyleSheet.create({
   verifyTitle: {...Typography.bold20, marginLeft: 20},
   verifyText: {...Typography.normal14, marginTop: 5, marginBottom: 10},
   verifyTitleBox: {flexDirection: 'row', alignItems: 'center'},
+  button: {
+    padding: 30,
+    paddingVertical: 10,
+    marginBottom: 20,
+  },
 });
 
 export default ItemScreen;

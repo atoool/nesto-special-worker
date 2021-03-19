@@ -14,7 +14,6 @@ import Linking from './utils/Linking';
 import SnackBar from './components/SnackBar';
 import {AppContext} from './context/AppContext';
 import {Colors} from './styles';
-
 const App = () => {
   const [showSnack, setShowSnack] = useState(false);
 

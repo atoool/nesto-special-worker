@@ -19,13 +19,13 @@ const ItemSuccessScreen = ({navigation}) => {
   }, []);
   return (
     <Success
-      title={locale?.success}
-      color={Colors.primaryGreen}
-      statusTitle={locale?.ISS_statusTitlePick}
-      statusText={locale?.ISS_statusTextPick}
-      infoTitle={locale?.ISS_infoTitlePick}
-      infoText={locale?.ISS_infoTextPick}
-      buttonText={locale?.ISS_buttonPick}
+      title={locale?.ready}
+      color={Colors.lightViolet}
+      statusTitle={locale?.ISS_statusTitle}
+      statusText={locale?.ISS_statusText}
+      infoTitle={locale?.ISS_infoTitle}
+      infoText={locale?.ISS_infoText}
+      buttonText={locale?.ISS_button}
       onPress={() => {
         navigation.popToTop();
       }}
