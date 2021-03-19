@@ -126,14 +126,22 @@ const VerifyItemSection = ({
             iconType={'tick'}
             title={locale?.IS_ready}
             titleStyle={[Typography.bold17White]}
-            style={{padding: 30, marginTop: 20}}
+            style={{
+              padding: 30,
+              paddingVertical: 10,
+              marginTop: 20,
+            }}
             onPress={() => {}}
           />
           <Button
             scanButton
             title={locale?.IS_notAvail}
             titleStyle={Typography.bold17White}
-            style={{padding: 30, marginVertical: 20}}
+            style={{
+              padding: 30,
+              paddingVertical: 10,
+              marginVertical: 20,
+            }}
             onPress={() => {}}
           />
         </View>

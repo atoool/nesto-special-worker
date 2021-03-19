@@ -64,7 +64,6 @@ const styles = StyleSheet.create({
   btnStyle: {
     backgroundColor: Colors.secondaryRed,
     padding: 15,
-    height: 50,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 7,
