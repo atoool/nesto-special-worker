@@ -1,5 +1,5 @@
 import React from 'react';
-import {Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import TickSVG from '../assets/svg/TickSVG.svg';
 import CloseSVG from '../assets/svg/CloseSVG.svg';
 import {Colors, Typography} from '../styles';

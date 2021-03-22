@@ -1,9 +1,9 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet } from 'react-native';
-import { Colors } from '../styles';
+import {TouchableOpacity, StyleSheet} from 'react-native';
+import {Colors} from '../styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const Checkbox = ({ val, onChange }) => {
+const Checkbox = ({val, onChange}) => {
   const styles = StyleSheet.create({
     touchable: {
       borderColor: val ? Colors.primary : Colors.lightGray,

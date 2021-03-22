@@ -1,21 +1,15 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  View,
-  StyleSheet,
-} from 'react-native';
+import {SafeAreaView, StyleSheet} from 'react-native';
 import {AuthContext} from '../context/AuthContext';
-import {Typography, Colors} from '../styles';
+import {Colors} from '../styles';
 import Title from '../components/Title';
 import {AppContext} from '../context/AppContext';
-import ProfileImageSVG from '../assets/svg/ProfileImageSVG.svg';
 import ModalComponent from '../components/ModalComponent';
 import {Constants, Storage} from '../utils';
 import {CommonActions} from '@react-navigation/native';
 import TestTouchable from '../components/TestTouchable';
-import RightCaretSVG from '../assets/svg/RightCaretSVG.svg';
+import ProfileSection from '../components/ProfileSection';
+import LinkButton from '../components/LinkButton';
 
 const ProfileScreen = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -46,7 +40,7 @@ const ProfileScreen = ({navigation}) => {
   }, []);
 
   return (
-    <SafeAreaView style={{backgroundColor: Colors.WHITE, flex: 1}}>
+    <SafeAreaView style={styles.container}>
       <Title text={locale?.headings.profile} />
       <TestTouchable>
         <ProfileSection
@@ -78,73 +72,8 @@ const ProfileScreen = ({navigation}) => {
   );
 };
 
-const LinkButton = ({title, topBorder, onPress}) => {
-  const borderStyle = {
-    borderTopWidth: topBorder ? 1 : 0,
-  };
-  return (
-    <TouchableOpacity
-      style={[styles.linkButton, borderStyle]}
-      onPress={onPress}>
-      <Text style={[styles.linkButtonText, Typography.bold21]}>{title}</Text>
-      <RightCaretSVG />
-    </TouchableOpacity>
-  );
-};
-
-// const MarkAvailability = ({topBorder, title}) => {
-//   const borderStyle = {
-//     borderTopWidth: topBorder ? 1 : 0,
-//   };
-//   return (
-//     <TouchableOpacity style={[styles.linkButton, borderStyle]}>
-//       <Text style={[styles.linkButtonText, Typography.bold21]}>{title}</Text>
-//       <MarkAvailabilitySVG />
-//     </TouchableOpacity>
-//   );
-// };
-
-const ProfileSection = ({name, email, phone}) => {
-  return (
-    <View style={styles.profileSectionContainer}>
-      <View style={styles.profileImageView}>
-        <ProfileImageSVG />
-      </View>
-      <View>
-        <Text style={Typography.bold16}>{name}</Text>
-        <Text>{email}</Text>
-      </View>
-    </View>
-  );
-};
-
 const styles = StyleSheet.create({
-  profileImageView: {
-    // backgroundColor: Colors.secondaryGray,
-    width: 60,
-    height: 60,
-    marginLeft: 0,
-    marginRight: 20,
-  },
-  profileSectionContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 32,
-    paddingVertical: 20,
-    borderBottomWidth: 1,
-    borderColor: '#DFDEDE',
-  },
-  linkButton: {
-    paddingVertical: 20,
-    paddingHorizontal: 32,
-    borderBottomWidth: 1,
-    borderColor: '#DFDEDE',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  linkButtonText: {
-    flex: 1,
-  },
+  container: {backgroundColor: Colors.WHITE, flex: 1},
 });
 
 export default ProfileScreen;

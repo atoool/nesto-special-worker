@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import { Typography } from '.././styles';
+import {Text, View, StyleSheet} from 'react-native';
+import {Typography} from '.././styles';
 
 const StatusPill = ({
   text,

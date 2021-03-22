@@ -3,11 +3,9 @@ import {FlatList, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {RightCaretSVG} from '../assets/svg/RightCaretSVG.svg';
 import {Colors, Typography} from '../styles';
 import {Constants} from '../utils';
-import Button from './Button';
 import Divider from './Divider';
 import ModalComponent from './ModalComponent';
 import OrderComponent from './OrderComponent';
-import StatusPill from './StatusPill';
 import TickComponent from './TickComponent';
 
 const now = Date.now();
@@ -34,11 +32,7 @@ const AccordionItem = ({
   readyButtonLoading = false,
   locale,
 }) => {
-  time_slot = time_slot
-    ? // ? userType === 'packer'
-      //   ? { start_time: order_start_time, end_time: order_end_time }
-      time_slot
-    : {start_time: now, end_time: now};
+  time_slot = time_slot ? time_slot : {start_time: now, end_time: now};
 
   const [modalVisible, setModalVisible] = useState(false);
   return (
@@ -53,20 +47,6 @@ const AccordionItem = ({
         endTime={time_slot.end_time}
         timeLeft={timeLeft}
       />
-      {/* <View style={styles.positionBox}>
-        {binsAssigned &&
-          binsAssigned?.map((itm, i) => (
-            <View key={i} style={styles.statusPill}>
-              <StatusPill
-                backgroundColor="#C5B171"
-                marginRight={5}
-                text={itm?.bin_number}
-                paddingVertical={5}
-                textStyle={Typography.bold13White}
-              />
-            </View>
-          ))}
-      </View> */}
       {items?.length !== 0 && (
         <FlatList
           data={items}
@@ -104,17 +84,6 @@ const AccordionItem = ({
           )}
         />
       )}
-      {/* <Button
-        title={buttonTitle}
-        disabled={
-          !showReadyButton || (binsAssigned ? binsAssigned.length === 0 : true)
-        }
-        style={styles.button}
-        loading={readyButtonLoading === index}
-        onPress={() => {
-          setModalVisible(true);
-        }}
-      /> */}
 
       <ModalComponent
         visible={modalVisible}

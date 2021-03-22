@@ -1,14 +1,13 @@
 import React, {useContext, useState} from 'react';
 import {SafeAreaView, Text, View, StyleSheet, ScrollView} from 'react-native';
 import {Typography, Colors} from '../styles';
-import Button from '../components/Button';
 import {AppContext} from '../context/AppContext';
 import {Constants} from '../utils';
 import {WorkerContext} from '../context/WorkerContext';
 import Loader from '../components/Loader';
 import TimerComponent from '../components/TimerComponent';
 import ItemSection from '../components/ItemSection';
-import Divider from '../components/Divider';
+import VerifyItemSection from '../components/VerifyItemSection';
 
 const now = new Date();
 
@@ -42,7 +41,7 @@ const ItemScreen = ({
   };
 
   let status = locale?.status?.cn;
-
+  let qty = item?.qty ? item?.qty : item?.repick_qty ? item?.repick_qty : 0;
   if (isLoading) {
     return (
       <View style={styles.loading}>
@@ -57,9 +56,7 @@ const ItemScreen = ({
         <ItemSection
           title={item?.name ? item?.name : Constants.emptyItemName}
           price={item?.price ? item?.price?.toFixed(2) : 0}
-          quantity={
-            item?.qty ? item?.qty : item?.repick_qty ? item?.repick_qty : 0
-          }
+          quantity={qty}
           position={item?.position}
           department={item?.department}
           type={item?.order_type ? item?.order_type : locale?.status?.SD}
@@ -82,58 +79,10 @@ const ItemScreen = ({
           onManualEntry={onManualEntry}
           startTime={startTime}
           endTime={endTime}
+          locale={locale}
         />
       </ScrollView>
     </SafeAreaView>
-  );
-};
-
-const VerifyItemSection = ({
-  navigation,
-  item,
-  timeOut,
-  setTimerOut,
-  onManualEntry,
-  startTime,
-  endTime,
-}) => {
-  const {
-    locale: {locale},
-  } = useContext(AppContext);
-
-  return (
-    <>
-      <Divider />
-      <View>
-        <>
-          <View style={{marginHorizontal: 32, marginVertical: 20}}>
-            <Text style={Typography.bold21}>{locale?.IS_status}</Text>
-            <Text style={{marginVertical: 10}}>{locale?.IS_statusText}</Text>
-          </View>
-          <Divider />
-        </>
-
-        <View style={{marginHorizontal: 32, marginTop: 20}}>
-          <Button
-            scanButton
-            iconType={'tick'}
-            title={locale?.IS_ready}
-            titleStyle={[Typography.bold17White]}
-            style={styles.button}
-            onPress={onManualEntry}
-          />
-          <Button
-            scanButton
-            title={locale?.IS_notAvail}
-            titleStyle={Typography.bold17White}
-            style={styles.button}
-            onPress={() => {
-              navigation.pop();
-            }}
-          />
-        </View>
-      </View>
-    </>
   );
 };
 
@@ -177,11 +126,6 @@ const styles = StyleSheet.create({
   verifyTitle: {...Typography.bold20, marginLeft: 20},
   verifyText: {...Typography.normal14, marginTop: 5, marginBottom: 10},
   verifyTitleBox: {flexDirection: 'row', alignItems: 'center'},
-  button: {
-    padding: 30,
-    paddingVertical: 10,
-    marginBottom: 20,
-  },
 });
 
 export default ItemScreen;

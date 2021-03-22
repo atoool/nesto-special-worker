@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { AppContext } from '../context/AppContext';
+import React, {useContext} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import {AppContext} from '../context/AppContext';
 import useTimer from '../hooks/useTimer';
-import { Colors, Typography } from '../styles';
-import { Constants } from '../utils';
+import {Colors, Typography} from '../styles';
+import {Constants} from '../utils';
 
-const TimerComponent = ({ ss, fullTimer, inMinute, call }) => {
+const TimerComponent = ({ss, fullTimer, inMinute, call}) => {
   let HoursString = '00';
   let minutesString = '00';
   let secondString = '00';
@@ -24,7 +24,7 @@ const TimerComponent = ({ ss, fullTimer, inMinute, call }) => {
 
   inMinute && now <= 0 && call();
   const {
-    locale: { locale },
+    locale: {locale},
   } = useContext(AppContext);
   if (fullTimer) {
     return (
@@ -77,8 +77,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
   },
-  timerContainer2: { padding: 10, marginHorizontal: 0, marginVertical: 0 },
-  timeBox: { flexDirection: 'row', alignItems: 'center' },
+  timerContainer2: {padding: 10, marginHorizontal: 0, marginVertical: 0},
+  timeBox: {flexDirection: 'row', alignItems: 'center'},
 });
 
 export default TimerComponent;

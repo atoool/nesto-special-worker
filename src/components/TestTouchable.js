@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { ToastAndroid, TouchableOpacity } from 'react-native';
-import { env } from '../config/env';
+import React, {useState, useEffect} from 'react';
+import {ToastAndroid, TouchableOpacity} from 'react-native';
+import {env} from '../config/env';
 import ExtraPayload from '../utils/ExtraPayload';
 const API_URL = env.apiUrl;
 
-const TestTouchable = ({ children }) => {
-  const [data, setData] = useState({ version: '', build: '', baseURL: '' });
+const TestTouchable = ({children}) => {
+  const [data, setData] = useState({version: '', build: '', baseURL: ''});
   useEffect(() => {
     const onMount = async () => {
       const dt = await ExtraPayload();

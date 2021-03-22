@@ -1,8 +1,8 @@
-import React, { useRef } from 'react';
-import { Animated, StyleSheet, Text } from 'react-native';
-import { Colors, Typography } from '../styles';
+import React, {useRef} from 'react';
+import {Animated, StyleSheet, Text} from 'react-native';
+import {Colors, Typography} from '../styles';
 
-const SnackBar = ({ style, title, titleStyle, showSnack }) => {
+const SnackBar = ({style, title, titleStyle, showSnack}) => {
   const slideAnim = useRef(new Animated.Value(60)).current;
 
   const show = () => {
@@ -28,7 +28,7 @@ const SnackBar = ({ style, title, titleStyle, showSnack }) => {
       style={[
         styles.snackView,
         style ? style : {},
-        { transform: [{ translateY: slideAnim }] },
+        {transform: [{translateY: slideAnim}]},
       ]}>
       <Text style={[titleStyle, styles.text]}>{title}</Text>
     </Animated.View>

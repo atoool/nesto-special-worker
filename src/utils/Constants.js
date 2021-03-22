@@ -1,5 +1,5 @@
 const Constants = {
-  timeSlot: { start: '0:00 AM', end: '0:00 AM' },
+  timeSlot: {start: '0:00 AM', end: '0:00 AM'},
   awaitTime: 600,
   binsNeededLimit: 2,
   orderIdLimit: 20,

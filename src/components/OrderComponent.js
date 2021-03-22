@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import { AppContext } from '../context/AppContext';
-import { Colors, Typography } from '../styles';
-import { Constants } from '../utils';
+import React, {useContext} from 'react';
+import {View, StyleSheet, Text} from 'react-native';
+import {AppContext} from '../context/AppContext';
+import {Colors, Typography} from '../styles';
+import {Constants} from '../utils';
 import formatAmPm from '../utils/formatAmPm';
 import Arrow from './Arrow';
 import StatusPill from './StatusPill';
@@ -20,7 +20,7 @@ const OrderComponent = ({
   timeLeft,
 }) => {
   const {
-    locale: { locale },
+    locale: {locale},
   } = useContext(AppContext);
   const sTime = formatAmPm(startTime);
   const eTime = formatAmPm(endTime);
@@ -77,9 +77,9 @@ const OrderComponent = ({
 };
 
 const styles = StyleSheet.create({
-  container: { flexDirection: 'row', justifyContent: 'space-between' },
-  timeBox: { flexDirection: 'row', alignItems: 'center' },
-  statusBox: { flexDirection: 'row', alignItems: 'center' },
+  container: {flexDirection: 'row', justifyContent: 'space-between'},
+  timeBox: {flexDirection: 'row', alignItems: 'center'},
+  statusBox: {flexDirection: 'row', alignItems: 'center'},
   deliveryBox: {
     flexDirection: 'row',
     // justifyContent: 'space-between',
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
   },
-  timeLeftBox: { flexDirection: 'row', alignItems: 'center' },
+  timeLeftBox: {flexDirection: 'row', alignItems: 'center'},
   timerDivider: {
     height: '100%',
     width: 1,

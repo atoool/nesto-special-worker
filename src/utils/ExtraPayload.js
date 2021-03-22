@@ -6,8 +6,8 @@ import {
   getSystemVersion,
   getVersion,
 } from 'react-native-device-info';
-import { fetch } from '@react-native-community/netinfo';
-import { Storage } from './index';
+import {fetch} from '@react-native-community/netinfo';
+import {Storage} from './index';
 
 const ExtraPayload = async () => {
   let payload = {

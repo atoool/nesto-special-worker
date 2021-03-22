@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect, useRef } from 'react';
-import { Animated, StyleSheet, Text } from 'react-native';
-import { AppContext } from '../context/AppContext';
-import { Colors, Typography } from '../styles';
+import React, {useContext, useRef} from 'react';
+import {Animated, StyleSheet, Text} from 'react-native';
+import {AppContext} from '../context/AppContext';
+import {Colors, Typography} from '../styles';
 
-const InAppMessage = ({ style, titleStyle, textStyle }) => {
+const InAppMessage = ({style, titleStyle, textStyle}) => {
   const slideAnim = useRef(new Animated.Value(-500)).current;
-  const { showInAppMessage, inAppMessage, onSetShowInAppMessage } = useContext(
+  const {showInAppMessage, inAppMessage, onSetShowInAppMessage} = useContext(
     AppContext,
   );
   const show = () => {
@@ -35,7 +35,7 @@ const InAppMessage = ({ style, titleStyle, textStyle }) => {
       style={[
         styles.snackView,
         style ? style : {},
-        { transform: [{ translateY: slideAnim }] },
+        {transform: [{translateY: slideAnim}]},
       ]}>
       <Text style={[titleStyle, styles.title]}>{inAppMessage?.title}</Text>
       <Text style={[textStyle, styles.text]}>{inAppMessage?.body}</Text>

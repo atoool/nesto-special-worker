@@ -1,54 +1,21 @@
-import { Linking as Linker } from 'react-native';
+import {Linking as Linker} from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 
 const config = {
   screens: {
     LoginScreen: 'LoginScreen',
-    PackNow: {
-      initialRouteName: 'PackScreen',
+    ToDo: {
+      initialRouteName: 'ToDoScreen',
       screens: {
-        PackScreen: { path: 'PackScreen/:index', parse: { index: Number } },
-        ItemListScreen: 'PackNow/ItemListScreen',
-        ItemScreen: { path: 'PackNow/ItemScreen/:item' },
-        ItemSuccessScreen: 'PackNow/ItemSuccessScreen',
-        PackCompletedScreen: 'PackNow/PackCompletedScreen',
-        PrintLabelsScreen: 'PackNow/PrintLabelsScreen',
-        RepickSuccessScreen: 'PackNow/RepickSuccessScreen',
-        ScanScreen: 'PackNow/ScanScreen',
-        StatisticsScreen: 'PackNow/StatisticsScreen',
-        BinAssignScreen: 'PackNow/BinAssignScreen',
-        Browser: { path: 'PackNow/Browser/:src', parse: { src: String } },
+        ToDoScreen: 'ToDoScreen',
+        ItemScreen: {path: 'ToDo/ItemScreen/:item'},
+        ItemSuccessScreen: 'ToDo/ItemSuccessScreen',
       },
     },
-    Picknow: {
-      initialRouteName: 'PickScreen',
-      screens: {
-        PickScreen: 'PickScreen',
-        ItemScreen: { path: 'PickNow/ItemScreen/:item' },
-        ItemSuccessScreen: 'PickNow/ItemSuccessScreen',
-        PickCompletedScreen: 'PickNow/PickCompletedScreen',
-        SubstituteRequestedScreen: 'PickNow/SubstituteRequestedScreen',
-        ScanScreen: 'PickNow/ScanScreen',
-        StatisticsScreen: 'PickNow/StatisticsScreen',
-        SubstitutesScreen: 'PickNow/SubstitutesScreen',
-        SubstitutionDetailsScreen: 'PickNow/SubstitutionDetailsScreen',
-        Browser: { path: 'PickNow/Browser/:src', parse: { src: String } },
-      },
-    },
-    Notifications: 'Notifications',
-    Scan: 'Scan',
-    History: 'History',
-    Drop: 'Drop',
-    AssignBin: {
-      screens: {
-        PrintLabelsScreen: 'AssignBin/PrintLabelsScreen',
-        BinAssignScreen: 'AssignBin/BinAssignScreen',
-      },
-    },
+    Done: 'Done',
     Profile: {
       screens: {
-        PrintLabelsScreen: 'Profile/PrintLabelsScreen',
-        BinAssignScreen: 'Profile/BinAssignScreen',
+        ProfileScreen: 'ProfileScreen',
         StatisticsScreen: 'Profile/StatisticsScreen',
       },
     },
