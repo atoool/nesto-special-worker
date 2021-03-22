@@ -31,7 +31,7 @@ async function getTok() {
         console.log(token);
         console.log('<=================fcmToken');
         const PAYLOAD = {fcm_token: token};
-        await updateFCMToken(PAYLOAD);
+        // await updateFCMToken(PAYLOAD);
       }
     }
   } catch (e) {
@@ -108,6 +108,7 @@ export function useFirebase() {
   useEffect(() => {
     // Assume a message-notification contains a "type" property in the data payload of the screen to open
     messaging().onNotificationOpenedApp(async remoteMessage => {
+      console.warn('ss');
       if (remoteMessage) {
         console.log(
           '\n🔥 Firebase Notification caused app to open from background state:',
