@@ -32,11 +32,13 @@ const ItemScreen = ({
 
   const onManualEntry = async itemsQty => {
     setIsLoading(true);
-    await setItemPicked(item?.id, item?.item_type, itemsQty).then(async () => {
-      await getOrdersList();
-      await getDropList();
-      navigation.navigate('ItemSuccessScreen');
-    });
+    await setItemPicked(item?.id, item?.item_type, itemsQty)
+      .then(async () => {
+        await getOrdersList();
+        await getDropList();
+        navigation.navigate('ItemSuccessScreen');
+      })
+      .catch(() => {});
     // setIsLoading(false);
   };
 
