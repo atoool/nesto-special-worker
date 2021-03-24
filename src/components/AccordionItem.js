@@ -62,9 +62,9 @@ const AccordionItem = ({
                 <View style={styles.departmentBox}>
                   <TickComponent
                     enabled={
-                      userType === 'packer'
-                        ? item.packer_checked
-                        : item.picker_checked
+                      userType === 'fisher'
+                        ? item?.fishmongering_completed
+                        : item?.butchering_completed
                     }
                   />
                   <View style={styles.textBox}>

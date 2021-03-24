@@ -17,6 +17,7 @@
   },
   "status": {
     "cn":"Cutting now",
+    "cc":"Cutting completed",
     "ED": "Express delivery",
     "SD": "Scheduled delivery"
   },

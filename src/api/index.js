@@ -25,7 +25,6 @@ export const getOrdersDropList = async locale => {
   });
 };
 export const setItemPicked = async (id, item_type, locale) => {
-  console.warn(id, item_type);
   const URL = `/item/complete/${id}`;
   const extraParams = `&item_type=${item_type}`;
   return get(URL, true, true, extraParams)
