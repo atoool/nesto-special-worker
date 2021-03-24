@@ -4,7 +4,7 @@ import {Typography} from '../styles';
 import Button from './Button';
 import Divider from './Divider';
 
-const VerifyItemSection = ({navigation, item, onManualEntry, locale}) => {
+const VerifyItemSection = ({onManualEntry, onSetNotAvailable, locale}) => {
   return (
     <>
       <Divider />
@@ -31,9 +31,7 @@ const VerifyItemSection = ({navigation, item, onManualEntry, locale}) => {
             title={locale?.IS_notAvail}
             titleStyle={Typography.bold17White}
             style={styles.button}
-            onPress={() => {
-              navigation.pop();
-            }}
+            onPress={onSetNotAvailable}
           />
         </View>
       </View>

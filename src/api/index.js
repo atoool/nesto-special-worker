@@ -24,8 +24,23 @@ export const getOrdersDropList = async locale => {
     ToastAndroid.show(locale?.errorAlert, ToastAndroid.SHORT);
   });
 };
-export const setItemPicked = async (id, item_type, locale) => {
+export const setItemReady = async (id, item_type, locale) => {
+  console.warn(id, item_type);
   const URL = `/item/complete/${id}`;
+  const extraParams = `&item_type=${item_type}`;
+  return get(URL, true, true, extraParams)
+    .then(() => {
+      // ToastAndroid.show(locale?.success, ToastAndroid.SHORT);
+    })
+    .catch(e => {
+      console.log(e);
+      ToastAndroid.show(locale?.errorAlert, ToastAndroid.SHORT);
+      throw e;
+    });
+};
+
+export const setNotAvailable = async (id, item_type, locale) => {
+  const URL = `/item/not-available/${id}`;
   const extraParams = `&item_type=${item_type}`;
   return get(URL, true, true, extraParams)
     .then(() => {

@@ -4,7 +4,7 @@
  */
 import 'react-native-gesture-handler';
 import React, {useContext, useEffect, useState} from 'react';
-import {StatusBar} from 'react-native';
+import {LogBox, StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import RootSwitchNavigator from './routes/RootSwitchNavigator';
 import NetInfo from '@react-native-community/netinfo';
@@ -14,7 +14,7 @@ import Linking from './utils/Linking';
 import SnackBar from './components/SnackBar';
 import {AppContext} from './context/AppContext';
 import {Colors} from './styles';
-
+LogBox.ignoreAllLogs();
 const App = () => {
   const [showSnack, setShowSnack] = useState(false);
 

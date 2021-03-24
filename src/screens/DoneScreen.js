@@ -50,10 +50,12 @@ const DoneScreen = () => {
     } catch {}
     setDropButtonLoading(null);
   };
-
+  const userType = 'fisher';
+  const statusCheckKey =
+    userType === 'fisher' ? 'fishmongering_completed' : 'butchering_completed';
   const getPackedItemCount = list => {
     if (list && list.length !== 0) {
-      return list.filter(itm => itm.picker_checked).length;
+      return list.filter(itm => itm[statusCheckKey]).length;
     } else {
       return 0;
     }
@@ -73,32 +75,20 @@ const DoneScreen = () => {
         onRefresh={onRefresh}
         refreshing={refreshing}
         renderItem={({item, index}) => {
-          const picking_completed =
-            item?.items?.filter(itm => {
-              if (itm?.picker_checked) {
-                return itm;
-              }
-            })?.length === item?.items?.length;
+          const readyItems = getPackedItemCount(item?.items);
+          const completed = readyItems === item?.items?.length;
           return (
             <AccordionItem
               order={item}
               index={index}
               orderType={item?.order_type ? item.order_type : locale?.status.SD}
-              status={
-                item?.butchering_completed || item?.fishmongering_completed
-                  ? locale?.status?.cc
-                  : locale?.status?.cn
-              }
+              status={completed ? locale?.status?.cc : locale?.status?.cn}
               itemCount={
-                getPackedItemCount(item?.items) +
-                '/' +
-                item?.items?.length +
-                ' ' +
-                locale?.done
+                readyItems + '/' + item?.items?.length + ' ' + locale?.done
               }
               onReadyPress={onDropToBin}
               buttonTitle={locale.DS_dropReady}
-              showReadyButton={picking_completed}
+              showReadyButton={completed}
               readyButtonLoading={dropButtonLoading}
               locale={locale}
               userType={'fisher'}

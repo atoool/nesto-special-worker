@@ -2,37 +2,23 @@ import React, {createContext, useState, useContext} from 'react';
 import {
   getOrdersListPick,
   getOrdersDropList,
-  setItemPicked,
-  setItemDrop,
-  postSubstitutes,
-  postSuggestedSubstitutes,
-  getNotifications,
+  setItemReady,
+  setNotAvailable,
 } from '../api';
 import {AppContext} from './AppContext';
 
 export const WorkerContext = createContext({
   orders: [],
   dropList: [],
-  similarItems: [],
-  substitutedList: [],
-  pickerSuggestions: [],
-  notifications: [],
   getOrdersList: async () => {},
   getDropList: async () => {},
-  setItemPicked: async () => {},
-  getSimilarItemList: async () => {},
-  setItemDrop: async () => {},
-  getPickerSuggestedItems: async () => {},
-  getSubstitutedItems: async () => {},
-  postSubstitutes: async () => {},
-  postSuggestedSubstitutes: async () => {},
-  getAllNotifications: async () => {},
+  setItemReady: async () => {},
+  setNotAvailable: async () => {},
 });
 
 export const WorkerContextProvider = ({children}) => {
   const [orders, setOrders] = useState([]);
   const [dropList, setDropList] = useState([]);
-  const [notifications, setNotifications] = useState([]);
 
   const {
     locale: {locale},
@@ -58,27 +44,15 @@ export const WorkerContextProvider = ({children}) => {
     }
   };
 
-  const getAllNotifications = async () => {
-    try {
-      const list = await getNotifications(locale);
-      const temp = list.filter(item => item.role === 'picker');
-      setNotifications(temp?.reverse());
-    } catch (e) {}
-  };
-
   const value = {
     orders,
     dropList,
-    notifications,
     getOrdersList, //
     getDropList, //
-    setItemPicked: async (id, item_type, critical_qty) =>
-      await setItemPicked(id, item_type, critical_qty, locale),
-    setItemDrop: async id => await setItemDrop(id, locale),
-    postSubstitutes: async PAYLOAD => await postSubstitutes(PAYLOAD, locale),
-    postSuggestedSubstitutes: async PAYLOAD =>
-      await postSuggestedSubstitutes(PAYLOAD, locale),
-    getAllNotifications, //
+    setItemReady: async (id, item_type) =>
+      await setItemReady(id, item_type, locale),
+    setNotAvailable: async (id, item_type) =>
+      await setNotAvailable(id, item_type, locale),
   };
   return (
     <WorkerContext.Provider value={value}>{children}</WorkerContext.Provider>

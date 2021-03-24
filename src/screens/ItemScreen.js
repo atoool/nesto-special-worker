@@ -28,18 +28,37 @@ const ItemScreen = ({
     locale: {locale},
   } = useContext(AppContext);
 
-  const {setItemPicked, getOrdersList, getDropList} = useContext(WorkerContext);
+  const {
+    setItemReady,
+    getOrdersList,
+    getDropList,
+    setNotAvailable,
+  } = useContext(WorkerContext);
 
-  const onManualEntry = async itemsQty => {
+  const onManualEntry = async () => {
     setIsLoading(true);
-    await setItemPicked(item?.id, item?.item_type, itemsQty)
-      .then(async () => {
+    try {
+      await setItemReady(item?.id, item?.item_type).then(async () => {
         await getOrdersList();
         await getDropList();
         navigation.navigate('ItemSuccessScreen');
-      })
-      .catch(() => {});
-    // setIsLoading(false);
+      });
+    } catch {
+      setIsLoading(false);
+    }
+  };
+
+  const onSetNotAvailable = async () => {
+    setIsLoading(true);
+    try {
+      await setNotAvailable(item?.id, item?.item_type).then(async () => {
+        await getOrdersList();
+        await getDropList();
+        navigation.popToTop();
+      });
+    } catch {
+      setIsLoading(false);
+    }
   };
 
   let status = locale?.status?.cn;
@@ -79,6 +98,7 @@ const ItemScreen = ({
             setTimeOut(true);
           }}
           onManualEntry={onManualEntry}
+          onSetNotAvailable={onSetNotAvailable}
           startTime={startTime}
           endTime={endTime}
           locale={locale}
