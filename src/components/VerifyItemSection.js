@@ -4,7 +4,12 @@ import {Typography} from '../styles';
 import Button from './Button';
 import Divider from './Divider';
 
-const VerifyItemSection = ({onManualEntry, onSetNotAvailable, locale}) => {
+const VerifyItemSection = ({
+  item,
+  onManualEntry,
+  onSetNotAvailable,
+  locale,
+}) => {
   return (
     <>
       <Divider />
@@ -26,13 +31,15 @@ const VerifyItemSection = ({onManualEntry, onSetNotAvailable, locale}) => {
             style={styles.button}
             onPress={onManualEntry}
           />
-          <Button
-            scanButton
-            title={locale?.IS_notAvail}
-            titleStyle={Typography.bold17White}
-            style={styles.button}
-            onPress={onSetNotAvailable}
-          />
+          {!item?.assigned_item && (
+            <Button
+              scanButton
+              title={locale?.IS_notAvail}
+              titleStyle={Typography.bold17White}
+              style={styles.button}
+              onPress={onSetNotAvailable}
+            />
+          )}
         </View>
       </View>
     </>
