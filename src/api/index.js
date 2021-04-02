@@ -11,14 +11,14 @@ export const login = async (PAYLOAD, locale) => {
 };
 
 export const getOrdersListPick = async locale => {
-  const URL = '/order-list-todo';
+  const URL = '/butcher-fmonger/order-list-todo';
   return get(URL, true, false).catch(e => {
     console.log(e);
     ToastAndroid.show(locale?.errorAlert, ToastAndroid.SHORT);
   });
 };
 export const getOrdersDropList = async locale => {
-  const URL = '/order-list-done';
+  const URL = '/butcher-fmonger/order-list-done';
   return get(URL, true, false).catch(e => {
     console.log(e);
     ToastAndroid.show(locale?.errorAlert, ToastAndroid.SHORT);
@@ -26,7 +26,7 @@ export const getOrdersDropList = async locale => {
 };
 export const setItemReady = async (id, item_type, locale) => {
   console.warn(id, item_type);
-  const URL = `/item/complete/${id}`;
+  const URL = `/butcher-fmonger/item/complete/${id}`;
   const extraParams = `&item_type=${item_type}`;
   return get(URL, true, true, extraParams)
     .then(() => {
@@ -40,11 +40,11 @@ export const setItemReady = async (id, item_type, locale) => {
 };
 
 export const setNotAvailable = async (id, item_type, locale) => {
-  const URL = `/item/not-available/${id}`;
+  const URL = `/butcher-fmonger/item/not-available/${id}`;
   const extraParams = `&item_type=${item_type}`;
   return get(URL, true, true, extraParams)
     .then(() => {
-      // ToastAndroid.show(locale?.success, ToastAndroid.SHORT);
+      ToastAndroid.show(locale?.status?.si, ToastAndroid.SHORT);
     })
     .catch(e => {
       console.log(e);
@@ -54,14 +54,14 @@ export const setNotAvailable = async (id, item_type, locale) => {
 };
 
 export const getStatistics = async () => {
-  const URL = '/statistics';
+  const URL = '/butcher-fmonger/statistics';
   return get(URL, true).catch(e => {
     ToastAndroid.show(e, ToastAndroid.SHORT);
   });
 };
 
 export const getUserProfile = async () => {
-  const URL = '/profile';
+  const URL = '/butcher-fmonger/profile';
   return get(URL, true).catch(e => {
     ToastAndroid.show(e, ToastAndroid.SHORT);
   });

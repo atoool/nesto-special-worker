@@ -19,7 +19,9 @@
     "cn":"Cutting now",
     "cc":"Cutting completed",
     "ED": "Express delivery",
-    "SD": "Scheduled delivery"
+    "SD": "Scheduled delivery",
+    "si":"Substitution initiated",
+    "sc":"Substitution completed"
   },
   "push":{
     "orderRefresh":"Orders refreshed"

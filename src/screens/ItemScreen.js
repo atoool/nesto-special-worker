@@ -61,7 +61,11 @@ const ItemScreen = ({
     }
   };
 
-  let status = locale?.status?.cn;
+  let status = item?.assigned_item
+    ? locale?.status?.sc
+    : item?.bf_substitution_initiated
+    ? locale?.status?.si
+    : locale?.status?.cn;
   let qty = item?.qty ? item?.qty : item?.repick_qty ? item?.repick_qty : 0;
   if (isLoading) {
     return (
@@ -90,19 +94,21 @@ const ItemScreen = ({
         <View style={styles.skuBox}>
           <Text>SKU : {item?.sku ? item?.sku : Constants.emptySku}</Text>
         </View>
-        <VerifyItemSection
-          navigation={navigation}
-          item={item}
-          timeOut={timeOut}
-          setTimerOut={() => {
-            setTimeOut(true);
-          }}
-          onManualEntry={onManualEntry}
-          onSetNotAvailable={onSetNotAvailable}
-          startTime={startTime}
-          endTime={endTime}
-          locale={locale}
-        />
+        {!item?.bf_substitution_initiated && (
+          <VerifyItemSection
+            navigation={navigation}
+            item={item}
+            timeOut={timeOut}
+            setTimerOut={() => {
+              setTimeOut(true);
+            }}
+            onManualEntry={onManualEntry}
+            onSetNotAvailable={onSetNotAvailable}
+            startTime={startTime}
+            endTime={endTime}
+            locale={locale}
+          />
+        )}
       </ScrollView>
     </SafeAreaView>
   );

@@ -20,7 +20,10 @@ const RootSwitchNavigator = () => {
         />
       </Stack.Navigator>
     );
-  } else if (userType.toLowerCase() === 'picker') {
+  } else if (
+    userType.toLowerCase() === 'fishmonger' ||
+    userType.toLowerCase() === 'butcher'
+  ) {
     return (
       <WorkerContextProvider>
         <TabsNavigator />
