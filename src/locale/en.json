@@ -13,7 +13,7 @@
   },
   "placeholder": {
     "email": "Email Address",
-    "password": "Password",
+    "password": "Password"
   },
   "status": {
     "cn":"Cutting now",
@@ -62,5 +62,5 @@
   "cancel": "Cancel",
   "PS_logoutAlert": "Do you really wish to sign out?",
   "DS_dropReady": "Drop to packer bins",
-  "DS_confirm":"Confirm to proceed drop items to bin?",
+  "DS_confirm":"Confirm to proceed drop items to bin?"
 }

@@ -8,11 +8,14 @@ import AccordionItem from '../components/AccordionItem';
 import {Colors} from '../styles';
 import Divider from '../components/Divider';
 import {WorkerContext} from '../context/WorkerContext';
+import {AuthContext} from '../context/AuthContext';
 
 const DoneScreen = () => {
   const {
     locale: {locale},
   } = useContext(AppContext);
+  const {userType} = useContext(AuthContext);
+
   const {dropList, getDropList, setItemDrop} = useContext(WorkerContext);
 
   const [refreshing, setRefreshing] = useState(false);
@@ -50,7 +53,6 @@ const DoneScreen = () => {
     } catch {}
     setDropButtonLoading(null);
   };
-  const userType = 'fisher';
   const statusCheckKey =
     userType === 'fisher' ? 'fishmongering_completed' : 'butchering_completed';
   const getPackedItemCount = list => {
