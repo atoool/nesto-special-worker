@@ -93,7 +93,7 @@ const DoneScreen = () => {
               showReadyButton={completed}
               readyButtonLoading={dropButtonLoading}
               locale={locale}
-              userType={'fisher'}
+              userType={userType}
             />
           );
         }}
