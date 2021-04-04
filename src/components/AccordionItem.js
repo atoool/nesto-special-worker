@@ -1,10 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {FlatList, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {RightCaretSVG} from '../assets/svg/RightCaretSVG.svg';
 import {Colors, Typography} from '../styles';
 import {Constants} from '../utils';
 import Divider from './Divider';
-import ModalComponent from './ModalComponent';
 import OrderComponent from './OrderComponent';
 import TickComponent from './TickComponent';
 
@@ -34,7 +33,6 @@ const AccordionItem = ({
 }) => {
   time_slot = time_slot ? time_slot : {start_time: now, end_time: now};
 
-  const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.container}>
       <OrderComponent
@@ -62,9 +60,9 @@ const AccordionItem = ({
                 <View style={styles.departmentBox}>
                   <TickComponent
                     enabled={
-                      userType === 'fisher'
-                        ? item?.fishmongering_completed
-                        : item?.butchering_completed
+                      userType === 'butcher'
+                        ? item?.butchering_completed
+                        : item?.fishmongering_completed
                     }
                   />
                   <View style={styles.textBox}>
@@ -84,18 +82,6 @@ const AccordionItem = ({
           )}
         />
       )}
-
-      <ModalComponent
-        visible={modalVisible}
-        text={userType === 'packer' ? locale?.PS_confirm : locale?.DS_confirm}
-        button1Text={locale?.no}
-        button2Text={locale?.yes}
-        onButton1Press={() => setModalVisible(false)}
-        onButton2Press={() => {
-          setModalVisible(false);
-          onReadyPress && onReadyPress(id, index);
-        }}
-      />
     </View>
   );
 };
