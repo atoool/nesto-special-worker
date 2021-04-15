@@ -69,6 +69,11 @@ const ToDoScreen = () => {
                 ? item?.pickingDeadlineTimestamp
                 : now
             }
+            slotType={
+              (item?.order_type ?? 'scheduled') === 'scheduled'
+                ? 'Scheduled'
+                : 'Express'
+            }
           />
         )}
       />

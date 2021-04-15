@@ -14,7 +14,7 @@ const now = new Date();
 const ItemScreen = ({
   navigation,
   route: {
-    params: {item, timeLeft, startTime, endTime},
+    params: {item, timeLeft, startTime, endTime, slotType},
   },
 }) => {
   const ss = timeLeft
@@ -90,6 +90,7 @@ const ItemScreen = ({
           endTime={endTime}
           img={item?.image_url}
           locale={locale}
+          slotType={slotType}
         />
         <View style={styles.skuBox}>
           <Text>SKU : {item?.sku ? item?.sku : Constants.emptySku}</Text>
