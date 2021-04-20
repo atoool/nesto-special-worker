@@ -52,6 +52,7 @@ const PickList = ({
                 timeLeft,
                 startTime,
                 endTime,
+                slotType,
               });
             }}>
             <View style={styles.itemBox}>

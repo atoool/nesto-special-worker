@@ -26,7 +26,7 @@ const ItemSection = ({
   const eTime = formatAmPm(endTime);
 
   const backgroundColor =
-    slotType === 'scheduled' ? Colors.lightViolet : '#A1C349';
+    slotType === 'Scheduled' ? Colors.lightViolet : '#A1C349';
 
   return (
     <>
@@ -75,11 +75,7 @@ const ItemSection = ({
                   <View
                     style={[styles.deliveryStatusCircle, {backgroundColor}]}
                   />
-                  <Text style={Typography.bold15}>
-                    {((slotType ?? 'scheduled') === 'scheduled'
-                      ? 'Scheduled'
-                      : 'Express') + ' delivery'}
-                  </Text>
+                  <Text style={Typography.bold15}>{slotType} delivery</Text>
                   {/* mock orderType */}
                 </View>
                 <View style={styles.deliverBoxRow2}>
