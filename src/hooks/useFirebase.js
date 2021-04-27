@@ -31,7 +31,7 @@ async function getTok() {
         console.log(token);
         console.log('<=================fcmToken');
         const PAYLOAD = {fcm_token: token};
-        // await updateFCMToken(PAYLOAD);
+        await updateFCMToken(PAYLOAD);
       }
     }
   } catch (e) {
