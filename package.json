@@ -1,7 +1,7 @@
 {
   "name": "NestoSpecialWorker",
   "version": "1.0.4",
-  "buildNumber": "2",
+  "buildNumber": "4",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
