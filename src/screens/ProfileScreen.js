@@ -10,6 +10,7 @@ import {CommonActions} from '@react-navigation/native';
 import TestTouchable from '../components/TestTouchable';
 import ProfileSection from '../components/ProfileSection';
 import LinkButton from '../components/LinkButton';
+import ShowVersion from '../components/ShowVersion';
 
 const ProfileScreen = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -68,6 +69,7 @@ const ProfileScreen = ({navigation}) => {
         onButton1Press={() => setModalVisible(false)}
         onButton2Press={onLogOut}
       />
+      <ShowVersion />
     </SafeAreaView>
   );
 };

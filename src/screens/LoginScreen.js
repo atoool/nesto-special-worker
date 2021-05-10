@@ -15,6 +15,7 @@ import {Typography} from '../styles';
 import Images from '../assets/images';
 import {AppContext} from '../context/AppContext';
 import TestTouchable from '../components/TestTouchable';
+import ShowVersion from '../components/ShowVersion';
 
 const screenWidth = Math.round(Dimensions.get('window').width);
 
@@ -88,6 +89,7 @@ const LoginScreen = () => {
           loading={loading}
           style={styles.screenMargin}
         />
+        <ShowVersion />
       </ScrollView>
     </SafeAreaView>
   );
