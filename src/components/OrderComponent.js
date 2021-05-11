@@ -1,5 +1,7 @@
 import React, {useContext} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
+import moment from 'moment-timezone';
+
 import {AppContext} from '../context/AppContext';
 import {Colors, Typography} from '../styles';
 import {Constants} from '../utils';
@@ -12,8 +14,6 @@ const OrderComponent = ({
   orderId,
   status,
   items,
-  orderType,
-  index,
   pick,
   startTime,
   endTime,
@@ -59,15 +59,16 @@ const OrderComponent = ({
           <View style={styles.statusBox}>
             <View style={[styles.deliveryStatusCircle, {backgroundColor}]} />
             <Text style={Typography.bold15}>{slotType} delivery</Text>
-            {/* mock orderType */}
           </View>
+          <Text style={styles.centerSelf}>
+            {moment(startTime)?.format('Do MMM, YYYY')}
+          </Text>
           <View style={styles.deliveryBox}>
             <Text style={Typography.normal13}>{sTime}</Text>
             <Arrow />
             <Text style={Typography.normal13}>{eTime}</Text>
           </View>
         </View>
-        {/* {(!pick || index === 0) && ( */}
         <View style={styles.counter}>
           <Text style={Typography.normal12}>{locale?.timeLeft}</Text>
           <View style={styles.timeLeftBox}>
@@ -75,7 +76,6 @@ const OrderComponent = ({
             <Text style={Typography.normal12}> Hrs</Text>
           </View>
         </View>
-        {/* )} */}
       </View>
     </>
   );
@@ -85,12 +85,7 @@ const styles = StyleSheet.create({
   container: {flexDirection: 'row', justifyContent: 'space-between'},
   timeBox: {flexDirection: 'row', alignItems: 'center'},
   statusBox: {flexDirection: 'row', alignItems: 'center'},
-  deliveryBox: {
-    flexDirection: 'row',
-    // justifyContent: 'space-between',
-    marginTop: 5,
-    flexWrap: 'wrap',
-  },
+  deliveryBox: {flexDirection: 'row', marginTop: 5, flexWrap: 'wrap'},
   deliveryStatusCircle: {
     width: 12,
     height: 12,
@@ -99,7 +94,7 @@ const styles = StyleSheet.create({
     marginTop: 1,
   },
   historyBox: {
-    height: 'auto',
+    height: 83,
     backgroundColor: Colors.offWhite,
     padding: 10,
     marginVertical: 10,
@@ -109,7 +104,7 @@ const styles = StyleSheet.create({
   counter: {
     backgroundColor: Colors.offWhite,
     marginLeft: 10,
-    height: 70,
+    height: 83,
     borderRadius: 7,
     paddingHorizontal: 10,
     alignItems: 'center',
@@ -117,21 +112,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   timeLeftBox: {flexDirection: 'row', alignItems: 'center'},
-  timerDivider: {
-    height: '100%',
-    width: 1,
-    backgroundColor: Colors.WHITE,
-    opacity: 0.25,
-  },
-  timerContainer: {
-    backgroundColor: Colors.secondaryRed,
-    padding: 20,
-    marginHorizontal: 32,
-    marginVertical: 24,
-    borderRadius: 7,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
+  centerSelf: {alignSelf: 'center'},
 });
 
 export default OrderComponent;

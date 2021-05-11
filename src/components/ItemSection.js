@@ -13,7 +13,6 @@ const ItemSection = ({
   quantity,
   position,
   department,
-  type,
   status,
   startTime,
   endTime,
@@ -21,6 +20,7 @@ const ItemSection = ({
   locale,
   originalItem,
   slotType,
+  date,
 }) => {
   const sTime = formatAmPm(startTime);
   const eTime = formatAmPm(endTime);
@@ -43,7 +43,7 @@ const ItemSection = ({
         </View>
       </View>
       <View style={styles.contentBox}>
-        <View style={styles.subContentBox}>
+        <View style={styles.flex1}>
           {!originalItem && (
             <View style={styles.statusPillBox}>
               {position !== '' && position && (
@@ -59,7 +59,7 @@ const ItemSection = ({
             </View>
           )}
           <View style={styles.textContentBox}>
-            <View style={styles.titleBox}>
+            <View style={styles.flex1}>
               <Text style={Typography.bold21}>{title}</Text>
               <Text style={Typography.normal15}>{status}</Text>
             </View>
@@ -76,8 +76,8 @@ const ItemSection = ({
                     style={[styles.deliveryStatusCircle, {backgroundColor}]}
                   />
                   <Text style={Typography.bold15}>{slotType} delivery</Text>
-                  {/* mock orderType */}
                 </View>
+                <Text style={styles.centerSelf}>{date}</Text>
                 <View style={styles.deliverBoxRow2}>
                   <Text>{sTime}</Text>
                   <Arrow width={60} />
@@ -113,20 +113,16 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   contentBox: {flexDirection: 'row', marginHorizontal: 32},
-  subContentBox: {flex: 1},
+  flex1: {flex: 1},
   statusPillBox: {flexDirection: 'row'},
   textContentBox: {flexDirection: 'row', marginVertical: 10},
-  titleBox: {flex: 1},
-  priceBox: {
-    justifyContent: 'flex-start',
-    alignItems: 'flex-end',
-  },
+  priceBox: {justifyContent: 'flex-start', alignItems: 'flex-end'},
   rowBox: {flexDirection: 'row', alignItems: 'center'},
   historyBox: {
     backgroundColor: Colors.offWhite,
     padding: 10,
     borderRadius: 7,
-    height: 60,
+    height: 80,
     flex: 1,
   },
   deliveryStatusCircle: {
@@ -148,8 +144,9 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     borderRadius: 7,
     marginLeft: 10,
-    height: 60,
+    height: 80,
   },
+  centerSelf: {alignSelf: 'center'},
 });
 
 export default ItemSection;

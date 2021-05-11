@@ -1,5 +1,7 @@
 import React, {useContext, useState} from 'react';
 import {SafeAreaView, Text, View, StyleSheet, ScrollView} from 'react-native';
+import moment from 'moment-timezone';
+
 import {Typography, Colors} from '../styles';
 import {AppContext} from '../context/AppContext';
 import {Constants} from '../utils';
@@ -91,6 +93,7 @@ const ItemScreen = ({
           img={item?.image_url}
           locale={locale}
           slotType={slotType}
+          date={moment(startTime)?.format('Do MMM, YYYY')}
         />
         <View style={styles.skuBox}>
           <Text>SKU : {item?.sku ? item?.sku : Constants.emptySku}</Text>
