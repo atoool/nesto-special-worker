@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react';
 import {SafeAreaView, Text, View, StyleSheet, ScrollView} from 'react-native';
 import moment from 'moment-timezone';
 
-import {Typography, Colors} from '../styles';
+import {Colors} from '../styles';
 import {AppContext} from '../context/AppContext';
 import {Constants} from '../utils';
 import {WorkerContext} from '../context/WorkerContext';
@@ -16,7 +16,14 @@ const now = new Date();
 const ItemScreen = ({
   navigation,
   route: {
-    params: {item, timeLeft, startTime, endTime, slotType},
+    params: {
+      item,
+      timeLeft,
+      startTime,
+      endTime,
+      slotType,
+      sales_incremental_id,
+    },
   },
 }) => {
   const ss = timeLeft
@@ -63,12 +70,19 @@ const ItemScreen = ({
     }
   };
 
+  const onImagePress = () =>
+    navigation.navigate('ViewImageScreen', {
+      source: item?.image_url,
+      sales_incremental_id,
+    });
+
   let status = item?.assigned_item
     ? locale?.status?.sc
     : item?.bf_substitution_initiated
     ? locale?.status?.si
     : locale?.status?.cn;
   let qty = item?.qty ? item?.qty : item?.repick_qty ? item?.repick_qty : 0;
+
   if (isLoading) {
     return (
       <View style={styles.loading}>
@@ -76,6 +90,7 @@ const ItemScreen = ({
       </View>
     );
   }
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -94,6 +109,7 @@ const ItemScreen = ({
           locale={locale}
           slotType={slotType}
           date={moment(startTime)?.format('Do MMM, YYYY')}
+          onImagePress={onImagePress}
         />
         <View style={styles.skuBox}>
           <Text>SKU : {item?.sku ? item?.sku : Constants.emptySku}</Text>
@@ -103,9 +119,7 @@ const ItemScreen = ({
             navigation={navigation}
             item={item}
             timeOut={timeOut}
-            setTimerOut={() => {
-              setTimeOut(true);
-            }}
+            setTimerOut={() => setTimeOut(true)}
             onManualEntry={onManualEntry}
             onSetNotAvailable={onSetNotAvailable}
             startTime={startTime}
@@ -120,12 +134,6 @@ const ItemScreen = ({
 
 const styles = StyleSheet.create({
   container: {backgroundColor: Colors.WHITE, flex: 1},
-  timerDivider: {
-    height: '100%',
-    width: 1,
-    backgroundColor: Colors.WHITE,
-    opacity: 0.25,
-  },
   skuBox: {
     backgroundColor: Colors.offWhite,
     padding: 10,
@@ -142,22 +150,6 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: Colors.WHITE,
   },
-  timerContainer: {
-    backgroundColor: Colors.secondaryRed,
-    padding: 20,
-    marginHorizontal: 32,
-    marginVertical: 24,
-    borderRadius: 7,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-  },
-  timerContainer2: {padding: 10, marginHorizontal: 0, marginVertical: 0},
-  flexDirectionRow: {flexDirection: 'row'},
-  verifyBox: {paddingVertical: 10, paddingHorizontal: 32},
-  verifyTitle: {...Typography.bold20, marginLeft: 20},
-  verifyText: {...Typography.normal14, marginTop: 5, marginBottom: 10},
-  verifyTitleBox: {flexDirection: 'row', alignItems: 'center'},
 });
 
 export default ItemScreen;

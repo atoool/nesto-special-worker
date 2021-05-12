@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {Colors, Typography, width} from '../styles';
 import formatAmPm from '../utils/formatAmPm';
 import Arrow from './Arrow';
@@ -21,6 +21,7 @@ const ItemSection = ({
   originalItem,
   slotType,
   date,
+  onImagePress,
 }) => {
   const sTime = formatAmPm(startTime);
   const eTime = formatAmPm(endTime);
@@ -32,14 +33,16 @@ const ItemSection = ({
     <>
       <View style={styles.itemImageContainer}>
         <View style={styles.itemImageBox}>
-          <Image
-            source={{uri: img}}
-            resizeMode={'contain'}
-            style={[
-              styles.itemImage,
-              originalItem && {tintColor: Colors.primary6},
-            ]}
-          />
+          <TouchableOpacity activeOpacity={0.8} onPress={onImagePress}>
+            <Image
+              source={{uri: img}}
+              resizeMode={'contain'}
+              style={[
+                styles.itemImage,
+                originalItem && {tintColor: Colors.primary6},
+              ]}
+            />
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.contentBox}>

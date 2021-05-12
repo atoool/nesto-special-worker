@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import ItemScreen from '../screens/ItemScreen';
 import ToDoScreen from '../screens/ToDoScreen';
 import ItemSuccessScreen from '../screens/ItemSuccessScreen';
+import ViewImageScreen from '../screens/ViewImageScreen';
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,14 @@ const ToDoStack = () => {
         name="ItemSuccessScreen"
         component={ItemSuccessScreen}
         options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ViewImageScreen"
+        component={ViewImageScreen}
+        options={({route}) => ({
+          title: '#' + route?.params?.sales_incremental_id,
+          ...headerOptions,
+        })}
       />
     </Stack.Navigator>
   );
