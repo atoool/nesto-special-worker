@@ -12,7 +12,7 @@ import ProfileSection from '../components/ProfileSection';
 import LinkButton from '../components/LinkButton';
 import ShowVersion from '../components/ShowVersion';
 
-const ProfileScreen = ({navigation}) => {
+const ProfileScreen = ({navigation: {dispatch}}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [email, setEmail] = useState(Constants.emptyEmail);
   const {logOutUser} = useContext(AuthContext);
@@ -21,15 +21,20 @@ const ProfileScreen = ({navigation}) => {
     locale: {locale},
   } = useContext(AppContext);
 
-  const onLogOut = async () => {
+  const onLogOut = () => {
     setModalVisible(false);
-    await logOutUser();
-    navigation.dispatch(
+    dispatch(
       CommonActions.reset({
         index: 0,
-        routes: [{name: 'Pick now'}],
+        routes: [
+          {
+            name: 'ToDo',
+            params: {screen: 'ToDoScreen', params: {logout: true}},
+          },
+        ],
       }),
     );
+    setTimeout(() => logOutUser(), 500);
   };
 
   useEffect(() => {

@@ -9,10 +9,11 @@ import {AppContext} from '../context/AppContext';
 import PickList from '../components/PickList';
 import Divider from '../components/Divider';
 import {WorkerContext} from '../context/WorkerContext';
+import ModalComponent from '../components/ModalComponent';
 
 const now = Date.now();
 
-const ToDoScreen = () => {
+const ToDoScreen = ({route}) => {
   const [refreshing, setRefreshing] = useState(false);
   const [isLoading, setLoading] = useState(true);
 
@@ -33,6 +34,9 @@ const ToDoScreen = () => {
 
   useEffect(() => {
     const onMount = async () => {
+      if (route?.params?.logout ?? false) {
+        return;
+      }
       setLoading(true);
       await getOrdersList();
       setLoading(false);
@@ -40,6 +44,7 @@ const ToDoScreen = () => {
     onMount();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <Title text={locale?.headings.todo} />
@@ -76,6 +81,10 @@ const ToDoScreen = () => {
             }
           />
         )}
+      />
+      <ModalComponent
+        visible={route?.params?.logout ?? false}
+        text="Logging out. Please wait."
       />
     </SafeAreaView>
   );
